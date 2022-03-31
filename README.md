@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cbd3e679-74b5-410d-bdb2-254b6b1d6008/deploy-status)](https://app.netlify.com/sites/chiangs/deploys)
+
 - [Welcome to Chiangs.dev!](#welcome-to-chiangsdev)
   - [Remix](#remix)
   - [Netlify Setup](#netlify-setup)
