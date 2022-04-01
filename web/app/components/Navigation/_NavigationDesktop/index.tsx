@@ -38,9 +38,11 @@ const NavigationDesktop: React.FC = () => {
         },
     ];
     const pageLinks = pages.map((p) => (
-        <NavLink to={p.path} prefetch="intent" key={p.name}>
-            {p.name}
-        </NavLink>
+        <li key={p.name}>
+            <NavLink to={p.path} prefetch="intent">
+                {p.name}
+            </NavLink>
+        </li>
     ));
     return (
         <nav id={COMPONENT_ID} className="nav--desktop">
@@ -52,7 +54,7 @@ const NavigationDesktop: React.FC = () => {
                     width="61"
                 />
             </Link>
-            <ul className="list--links">{pageLinks}</ul>
+            <ul className="list--links list--flat list--nostyle">{pageLinks}</ul>
         </nav>
     );
 };
