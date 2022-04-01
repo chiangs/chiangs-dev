@@ -1,0 +1,49 @@
+/* #region Containers */
+.container {
+    padding: var(--space-container-xl);
+}
+
+.content {
+    padding: 0;
+}
+
+/* #endregion Containers */
+
+/* #region spacing modifiers */
+.nopadding {
+    padding: 0;
+}
+/* #endregion spacing modifiers */
+
+/* #region lists */
+.list--nostyle {
+    list-style: none;
+    padding: 0;
+}
+
+.list--flat {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+/* #endregion lists */
+
+/* #region Desktop Overrides */
+@media screen and (min-width: 780px) {
+    .content {
+        padding: var(--space-container-xxxl) calc(var(--space-container-xxxl) * 1.25);
+    }
+}
+
+@media screen and (min-width: 1240px) {
+    .content {
+        padding: var(--space-container-xxxl) calc(var(--space-container-xxxl) * 2.25);
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .content {
+        padding: var(--space-container-xxxl) calc(var(--space-container-xxxl) * 3.25);
+    }
+}
+/* #endregion Desktop overrides */

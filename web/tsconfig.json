@@ -1,20 +1,30 @@
 {
-  "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
-  "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "target": "ES2019",
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./app/*"]
-    },
+    "include": ["remix.env.d.ts", "**/*.ts", "**/*.tsx"],
+    "compilerOptions": {
+        "lib": ["DOM", "DOM.Iterable", "ES2019"],
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "jsx": "react-jsx",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "target": "ES2019",
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "~public/*": ["./public/*"],
+            "~/*": ["./app/*"],
+            "~constants": ["./app/__constants__/constants.ts"],
+            "~copy/*": ["./app/__copy__/*"],
+            "~types": ["./app/__types__/index.ts"],
+            "~utils": ["./app/__utils__/index.ts"],
+            "~components": ["./app/components/index.ts"],
+            "~contexts": ["./app/contexts/index.ts"],
+            "~hooks": ["./app/hooks/index.ts"],
+            "~routes/*": ["./app/routes/*"],
+            "~styles/*": ["./app/styles/*"]
+        },
 
-    // Remix takes care of building everything in `remix build`.
-    "noEmit": true
-  }
+        // Remix takes care of building everything in `remix build`.
+        "noEmit": true
+    }
 }

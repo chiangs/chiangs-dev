@@ -1,0 +1,68 @@
+.container--component.testimonial {
+    border-radius: var(--radius-card);
+    background-color: var(--color-bg);
+    padding: var(--space-content-l);
+    margin: var(--space-component-s) 0;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-card);
+}
+
+.testimonial .avatar {
+    flex: 0;
+    width: var(--size-avatar);
+    margin-top: var(--space-content-s);
+    margin-right: var(--space-content-xs);
+}
+
+.testimonial .avatar--image--container {
+    width: var(--size-avatar);
+    height: var(--size-avatar);
+    border-radius: var(--radius-circle);
+    box-shadow: var(--shadow-image);
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial .avatar--image {
+    max-width: var(--size-avatar);
+    object-fit: contain;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.testimonial .author {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    word-wrap: none;
+}
+
+.testimonial .author h3 {
+    margin: 0;
+}
+
+.testimonial .author--name {
+    color: var(--color-name);
+}
+
+.testimonial .title--position {
+    color: var(--color-title-position);
+    margin: 0;
+}
+
+.testimonial .review {
+    width: 100%;
+    color: var(--color-copy);
+    margin-top: var(--space-content-xl);
+    letter-spacing: initial;
+}
+
+/* #region Desktop Overrides */
+@media screen and (min-width: 780px) {
+    .container--component.testimonial {
+        padding: var(--space-content-xl);
+    }
+}
+/* #endregion Desktop overrides */

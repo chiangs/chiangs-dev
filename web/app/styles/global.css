@@ -1,0 +1,390 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Work Sans';
+    src: url('/fonts/WorkSans-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Work Sans';
+    src: url('/fonts/WorkSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    /* Colors */
+    /* Whites */
+    --white: hsl(0, 0%, 100%);
+    --off-white: hsl(195, 15%, 95%);
+    /* Grays */
+    --gunmetal: hsl(200, 20%, 18%);
+    --gunmetal-35: hsla(200, 20%, 18%, 0.35);
+    --space-gray: hsl(200, 18%, 26%);
+    --urban: hsl(200, 21%, 40%);
+    --battleship: hsl(203, 18%, 45%);
+    --vapor: hsl(201, 16%, 57%);
+    --slate: hsl(200, 16%, 48%);
+    --regent: hsl(202, 16%, 60%);
+    --tower: hsl(180, 15%, 72%);
+    --ghost: hsl(180, 13%, 85%);
+    /* Greens */
+    --forest: hsl(161, 100%, 19%);
+    --eucalyptus: hsl(155, 69%, 35%);
+    --jungle: hsl(156, 68%, 39%);
+    --genoa: hsl(158, 73%, 39%);
+    --shamrock: hsl(158, 63%, 49%);
+    --emerald: hsl(158, 75%, 53%);
+    /* Reds */
+    --pomegranate: hsl(6, 88%, 48%);
+    --punch: hsl(7, 86%, 59%);
+    --carnation: hsl(4, 91%, 66%);
+    --rosebud: hsl(4, 86%, 74%);
+    --flamingo: hsl(7, 74%, 79%);
+    --orchid: hsl(4, 89%, 67%);
+    /* Purples */
+    --purple-raz: hsl(304, 100%, 41%);
+    --purple-urple: hsl(306, 100%, 63%);
+    --midnight-haze: hsl(240, 52%, 11%);
+    --midnight-luck: hsl(240, 52%, 25%);
+    /* Blues */
+    --dodger: hsl(211, 100%, 62%);
+    --azure: hsl(212, 100%, 45%);
+    /* Fonts */
+    --font-title: 'Inter', sans-serif;
+    --font-body: 'Work Sans', sans-serif;
+    --font-light: 300;
+    --font-regular: 400;
+    --font-semibold: 600;
+    --font-bold: 900;
+    --leading: calc(16px * 1.6);
+    /* Spacings */
+    --space-ratio: 1.618;
+    --space-xxs: 0.25rem;
+    --space-xs: 0.5rem;
+    --space-s: 0.625rem;
+    --space-m: 0.875rem;
+    --space-l: 1.125rem;
+    --space-xl: 1.625rem;
+    --space-xxl: 3.25rem;
+    --space-xxxl: 5.25rem;
+    /* Container */
+    --space-container-xs: var(--space-xs);
+    --space-container-s: var(--space-s);
+    --space-container-m: var(--space-m);
+    --space-container-l: var(--space-l);
+    --space-container-xl: var(--space-xl);
+    --space-container-xxl: var(--space-xxl);
+    --space-container-xxxl: var(--space-xxxl);
+    /* Content */
+    --space-content-xxs: var(--space-xxs);
+    --space-content-xs: var(--space-xs);
+    --space-content-s: var(--space-m);
+    --space-content-s: var(--space-s);
+    --space-content-m: var(--space-m);
+    --space-content-l: var(--space-l);
+    --space-content-xl: var(--space-xl);
+    /* Component */
+    --space-component-xs: var(--space-xxs);
+    --space-component-s: var(--space-xs);
+    --space-component-m: var(--space-s);
+    --space-component-l: var(--space-m);
+    /* Shadows (set on box-shadow) */
+    --shadow-alert: 0px 1px 2px hsla(0, 0%, 0%, 0.15), 0px 4px 8px hsla(0, 0%, 0%, 0.2);
+    --shadow-button: 0px 1px 1px hsla(0, 0%, 0%, 0.25), 0px 1px 1px hsla(0, 0%, 0%, 0.16);
+    --shadow-image: hsla(0, 0%, 0%, 0.4) 0px 2px 4px, hsla(0, 0%, 0%, 0.3) 0px 7px 13px -3px,
+        hsla(0, 0%, 0%, 0.2) 0px -3px 0px inset;
+    --shadow-card: hsla(0, 0%, 0%, 0.19) 0px 10px 20px, hsla(0, 0%, 0%, 0.23) 0px 6px 6px;
+    /* Borders */
+    --border-button: 2px;
+    /* Radii */
+    --radius-button: 4px;
+    --radius-card: 2px;
+    --radius-circle: 50%;
+    /* Transitions */
+    --transition-logo: left 0.3s ease-in-out;
+    --transition-link: color 0.2s ease-in-out, box-shadow 0.1s ease-in-out;
+    /* Layering */
+    --modal: 1000;
+    --top: 500;
+    --middle: 300;
+    --bottom: 0;
+    /* Misc */
+    --blur-background: 33px;
+    --link-maxlength: 400px;
+    --height-logo: 43px;
+    --size-avatar: 80px;
+    --height-header-mobile: 71px;
+    --height-header-desktop: 150px;
+}
+
+@supports (font-variation-settings: normal) {
+    html {
+        font-family: 'Inter var', sans-serif;
+    }
+}
+
+html,
+body {
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    text-shadow: transparent 0 0 1px;
+    /* overflow-x: none; */
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.6;
+}
+
+body main {
+    flex: 1;
+}
+
+header {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: var(--top);
+}
+
+footer {
+    width: 100%;
+    margin-top: var(--space-component-l);
+    margin-bottom: calc(var(--height-header-mobile) + var(--space-container-l));
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer .container {
+    padding: var(--space-component-m);
+}
+
+footer .footer--cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+footer .footer--cta img {
+    margin-left: calc(var(--space-component-l) * 5.5);
+}
+
+footer .footer--cta button {
+    flex: 0;
+}
+
+footer .footer--link {
+    margin: var(--space-content-m) 0;
+}
+
+footer .footer--misc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-title);
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2.625rem;
+    font-weight: var(--font-bold);
+    letter-spacing: -0.01em;
+    margin-bottom: var(--space-content-l);
+}
+
+h2 {
+    font-size: 1.625rem;
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-content-m);
+}
+
+h3 {
+    font-size: 1.625rem;
+    font-weight: var(--font-semibold);
+    margin-bottom: var(--space-content-s);
+}
+
+h4 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-content-xs);
+}
+
+p {
+    margin-bottom: var(--space-content-xl);
+}
+
+p:last-of-type {
+    margin-bottom: 0;
+}
+
+p,
+a {
+    line-height: 1.6;
+}
+
+p.small,
+pre {
+    font-size: 0.75rem;
+}
+
+a,
+button {
+    touch-action: manipulation;
+}
+
+a {
+    font-family: var(--font-body);
+    font-weight: var(--font-semibold);
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    text-decoration: underline;
+    transition: var(--transition-link);
+}
+
+a.link--image {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    padding: 0.5em;
+    margin: -0.5em;
+    z-index: 1;
+    text-decoration: none;
+    font-weight: normal;
+    text-transform: none;
+}
+
+.skiplink {
+    position: absolute;
+    top: -3em;
+}
+
+.skiplink:focus {
+    top: 0;
+}
+
+img {
+    content-visibility: auto;
+}
+
+/* #region App Modal */
+#modal {
+    height: 100vh;
+    height: 100%;
+    width: 100vw;
+    width: 100%;
+    position: fixed;
+}
+
+#modal.close {
+    z-index: var(--bottom);
+    opacity: 0;
+    transform: scale(0);
+}
+
+#modal.open {
+    z-index: var(--modal);
+    transform: scale(1);
+    opacity: 1;
+    transition: opacity 0.1s ease-out;
+}
+
+/* #region media queries */
+@media screen and (min-width: 780px) {
+    header {
+        height: var(--height-header-desktop);
+    }
+
+    header {
+        position: relative;
+    }
+
+    footer {
+        margin-bottom: 0;
+    }
+
+    h1 {
+        font-size: 4.25rem;
+    }
+
+    h2 {
+        font-size: 2.625rem;
+    }
+
+    h3 {
+        font-size: 1.625rem;
+    }
+
+    h4 {
+        font-size: 1.625rem;
+    }
+
+    #modal {
+        display: none;
+    }
+
+    .nav--desktop {
+        padding: var(--space-container-xl);
+        flex-basis: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .nav--desktop .list--links {
+        margin: 0;
+    }
+
+    .nav--desktop .list--links a {
+        text-decoration: none;
+        border-radius: var(--radius-card);
+        padding: var(--space-content-xxs) var(--space-content-xs);
+        margin: 0 var(--space-container-m);
+    }
+
+    .nav--desktop .nav--avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: var(--radius-circle);
+        box-shadow: var(--shadow-image);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .nav--desktop .nav--avatar.hidden {
+        visibility: hidden;
+    }
+
+    .nav--desktop .nav--avatar.visible {
+        visibility: visible;
+    }
+}
