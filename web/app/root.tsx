@@ -2,13 +2,16 @@
 import { useEffect } from 'react';
 // Remix
 import {
+    json,
     Links,
     LiveReload,
+    LoaderFunction,
     Meta,
     Outlet,
     Scripts,
     ScrollRestoration,
     useCatch,
+    useLoaderData,
     useLocation,
 } from 'remix';
 import type { MetaFunction, LinksFunction } from 'remix';
@@ -32,6 +35,15 @@ import { Theme } from '~types';
 // Components
 import { ErrorUI, Navigation, MobileMenu, Footer, SkipLink } from '~components';
 
+// #region Server
+type LoaderData = { gaTrackingId: string | undefined };
+
+export const loader: LoaderFunction = async () => {
+    return json<LoaderData>({ gaTrackingId: process.env.GA_TRACKING_ID });
+};
+// #endregion Server
+
+// #region Client
 // TODO: Catch boundaries
 // TODO: Update meta
 // TODO: Remove transition for framer motion?
@@ -108,13 +120,12 @@ const App = () => {
     //  TODO: state, toggle, storage, dynamic add/remove
     const theme: Theme = 'sunset';
     const location = useLocation();
+    const { gaTrackingId } = useLoaderData<LoaderData>();
+
     const gtagLoad =
-        process.env.NODE_ENV === 'development' ? null : (
+        process.env.NODE_ENV === 'production' ? null : (
             <>
-                <script
-                    async
-                    src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-                />
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
                 <script
                     async
                     id="gtag-init"
@@ -123,7 +134,7 @@ const App = () => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                gtag('config', '${gaTrackingId}', {
                   page_path: window.location.pathname,
                 });
               `,
@@ -131,6 +142,7 @@ const App = () => {
                 />
             </>
         );
+
     useEffect(() => {
         if (process.env.NODE_ENV === 'production') {
             console.clear();
@@ -139,7 +151,9 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        gtag.pageview(location.pathname);
+        if (process.env.NODE_ENV === 'production') {
+            gtag.pageview(location.pathname);
+        }
     }, [location]);
 
     return (
@@ -186,3 +200,4 @@ export const ErrorBoundary = ({ error }: { error: Error }) => (
 );
 
 export default App;
+// #endregion Client
