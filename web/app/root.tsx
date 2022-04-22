@@ -123,7 +123,7 @@ const App = () => {
     const { gaTrackingId } = useLoaderData<LoaderData>();
 
     const gtagLoad =
-        process.env.NODE_ENV === 'production' ? null : (
+        process.env.NODE_ENV === 'development' || !gaTrackingId ? null : (
             <>
                 <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
                 <script
