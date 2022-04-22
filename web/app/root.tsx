@@ -13,7 +13,7 @@ import {
 } from 'remix';
 import type { MetaFunction, LinksFunction } from 'remix';
 // Google
-import * as gtag from '~utils';
+import { gtag } from '~utils';
 
 // FramerMotion
 import { LazyMotion, domAnimation } from 'framer-motion';
@@ -75,14 +75,40 @@ export const links: LinksFunction = () => [
 
 const Document = ({
     children,
+    gtagScript,
     theme,
     title = `Stephen E. Chiang`,
 }: {
     children: React.ReactNode;
+    gtagScript?: JSX.Element | null;
     theme?: Theme;
     title?: string;
-}): JSX.Element => {
-    const gtagScript =
+}): JSX.Element => (
+    <html lang="en">
+        <head>
+            <meta charSet="utf-8" />
+            <meta name="viewport" content="width=device-width,initial-scale=1" />
+            <Meta />
+            <title>{title}</title>
+            <link rel="icon" href="/favicon.ico" sizes="any" />
+            <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+            <Links />
+            {gtagScript}
+        </head>
+        <body id="body" className={`body ${theme} mobile`}>
+            {children}
+            <ScrollRestoration />
+            <Scripts />
+            {process.env.NODE_ENV === 'development' && <LiveReload />}
+        </body>
+    </html>
+);
+
+const App = () => {
+    //  TODO: state, toggle, storage, dynamic add/remove
+    const theme: Theme = 'sunset';
+    const location = useLocation();
+    const gtagLoad =
         process.env.NODE_ENV === 'development' ? null : (
             <>
                 <script
@@ -105,33 +131,6 @@ const Document = ({
                 />
             </>
         );
-    return (
-        <html lang="en">
-            <head>
-                <meta charSet="utf-8" />
-                <meta name="viewport" content="width=device-width,initial-scale=1" />
-                <Meta />
-                <title>{title}</title>
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-                <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-                <Links />
-                {gtagScript}
-            </head>
-            <body id="body" className={`body ${theme} mobile`}>
-                {children}
-                <ScrollRestoration />
-                <Scripts />
-                {process.env.NODE_ENV === 'development' && <LiveReload />}
-            </body>
-        </html>
-    );
-};
-
-const App = () => {
-    //  TODO: state, toggle, storage, dynamic add/remove
-    const theme: Theme = 'sunset';
-    const location = useLocation();
-
     useEffect(() => {
         if (process.env.NODE_ENV === 'production') {
             console.clear();
@@ -146,7 +145,7 @@ const App = () => {
     return (
         <LazyMotion features={domAnimation} strict>
             <AppUIState>
-                <Document theme={theme}>
+                <Document theme={theme} gtagScript={gtagLoad}>
                     <SkipLink />
                     <header id="header" className="header">
                         <Navigation />
