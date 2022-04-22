@@ -1,8 +1,20 @@
 // React
 import { useEffect } from 'react';
 // Remix
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix';
+import {
+    Links,
+    LiveReload,
+    Meta,
+    Outlet,
+    Scripts,
+    ScrollRestoration,
+    useCatch,
+    useLocation,
+} from 'remix';
 import type { MetaFunction, LinksFunction } from 'remix';
+// Google
+import * as gtag from '~utils';
+
 // FramerMotion
 import { LazyMotion, domAnimation } from 'framer-motion';
 // Styles
@@ -69,29 +81,56 @@ const Document = ({
     children: React.ReactNode;
     theme?: Theme;
     title?: string;
-}): JSX.Element => (
-    <html lang="en">
-        <head>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="width=device-width,initial-scale=1" />
-            <Meta />
-            <title>{title}</title>
-            <link rel="icon" href="/favicon.ico" sizes="any" />
-            <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-            <Links />
-        </head>
-        <body id="body" className={`body ${theme} mobile`}>
-            {children}
-            <ScrollRestoration />
-            <Scripts />
-            {process.env.NODE_ENV === 'development' && <LiveReload />}
-        </body>
-    </html>
-);
+}): JSX.Element => {
+    const gtagScript =
+        process.env.NODE_ENV === 'development' ? null : (
+            <>
+                <script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
+                />
+                <script
+                    async
+                    id="gtag-init"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${gtag.GA_TRACKING_ID}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+                    }}
+                />
+            </>
+        );
+    return (
+        <html lang="en">
+            <head>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="width=device-width,initial-scale=1" />
+                <Meta />
+                <title>{title}</title>
+                <link rel="icon" href="/favicon.ico" sizes="any" />
+                <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+                <Links />
+                {gtagScript}
+            </head>
+            <body id="body" className={`body ${theme} mobile`}>
+                {children}
+                <ScrollRestoration />
+                <Scripts />
+                {process.env.NODE_ENV === 'development' && <LiveReload />}
+            </body>
+        </html>
+    );
+};
 
 const App = () => {
     //  TODO: state, toggle, storage, dynamic add/remove
     const theme: Theme = 'sunset';
+    const location = useLocation();
 
     useEffect(() => {
         if (process.env.NODE_ENV === 'production') {
@@ -99,6 +138,10 @@ const App = () => {
             logPeekMessage();
         }
     }, []);
+
+    useEffect(() => {
+        gtag.pageview(location.pathname);
+    }, [location]);
 
     return (
         <LazyMotion features={domAnimation} strict>
