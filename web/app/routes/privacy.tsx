@@ -42,8 +42,8 @@ const PrivacyPage: React.FC = () => {
                         experience that provides a more logical flow and grouping of content.
                     </p>
                     <p>
-                        Both are keep the user anonymous. In other woreds, none of these are
-                        personally identifiable.
+                        Both keep the user anonymous. In other woreds, none of these are personally
+                        identifiable.
                     </p>
                     <p>
                         Additionally, Nothing is being stored on your browser (such as cookies and
