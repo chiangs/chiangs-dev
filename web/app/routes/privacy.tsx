@@ -30,18 +30,29 @@ const PrivacyPage: React.FC = () => {
                 <div className="content">
                     <h1>Is this site tracking you?</h1>
                     <h2 className="highlight">No.</h2>
-                    <p>At least, not yet.</p>
+                    <p>At least, not exactly.</p>
                     <p>
-                        I do plan to implement analytics to better understand usage and
-                        effectiveness of various features I've implemented. Additionally, I may
-                        implement storing your preferred theme setting to your browser.
+                        This app is connected to Metronome to monitor real-time Web Core Vitals to
+                        help me understand performance, debug, and build a more performant
+                        experience.
                     </p>
                     <p>
-                        None of these are personally identifiable, except possibly your IP address.
+                        I also use Google Analytics 4 to track page view and events to better
+                        understand what a user wants and expects to do to help me build a better
+                        experience that provides a more logical flow and grouping of content.
                     </p>
                     <p>
-                        No matter what, your information, if any is collected by this site will
-                        never be sold or given to anyone else.
+                        Both are keep the user anonymous. In other woreds, none of these are
+                        personally identifiable.
+                    </p>
+                    <p>
+                        Additionally, Nothing is being stored on your browser (such as cookies and
+                        tokens). I may implement storing your preferred theme setting to your
+                        browser in the future.
+                    </p>
+                    <p>
+                        No matter what, your information, if any, collected by this site will never
+                        be sold or given to anyone else.
                     </p>
                 </div>
             </section>
