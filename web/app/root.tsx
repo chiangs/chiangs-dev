@@ -17,7 +17,6 @@ import {
 import type { MetaFunction, LinksFunction } from 'remix';
 // Google
 import { gtag } from '~utils';
-
 // FramerMotion
 import { LazyMotion, domAnimation } from 'framer-motion';
 // Styles
@@ -27,12 +26,10 @@ import utilityClassesUrl from '~styles/utils/utils.css';
 import sunsetStylesUrl from '~styles/themes/sunset.css';
 import mobileMenuStylesUrl from '~styles/components/mobile-menu.css';
 import buttonStylesUrl from '~styles/components/buttons.css';
-
 // App
 import { AppUIState } from '~contexts';
-import { logPeekMessage } from '~utils';
 import { Theme } from '~types';
-// Components
+import { useConsolePeekMsg } from '~hooks';
 import { ErrorUI, Navigation, MobileMenu, Footer, SkipLink } from '~components';
 
 // #region Server
@@ -85,6 +82,24 @@ export const links: LinksFunction = () => [
     },
 ];
 
+const GA = ({ trackingId }: { trackingId: string }): JSX.Element => (
+    <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${trackingId}`} />
+        <script
+            async
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${trackingId}');
+              `,
+            }}
+        />
+    </>
+);
+
 const Document = ({
     children,
     gtagScript,
@@ -117,47 +132,30 @@ const Document = ({
 );
 
 const App = () => {
-    //  TODO: state, toggle, storage, dynamic add/remove
-    const theme: Theme = 'sunset';
-    const location = useLocation();
     const { gaTrackingId } = useLoaderData<LoaderData>();
+    const location = useLocation();
+    useConsolePeekMsg(process.env.NODE_ENV);
 
-    const gtagLoad =
-        process.env.NODE_ENV === 'development' || !gaTrackingId ? null : (
-            <>
-                <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
-                <script
-                    async
-                    id="gtag-init"
-                    dangerouslySetInnerHTML={{
-                        __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaTrackingId}');
-              `,
-                    }}
-                />
-            </>
-        );
-
-    useEffect(() => {
-        if (process.env.NODE_ENV === 'production') {
-            console.clear();
-            logPeekMessage();
-        }
-    }, []);
-
+    // GA pageview
     useEffect(() => {
         if (gaTrackingId?.length) {
             gtag.pageview(location.pathname, gaTrackingId);
         }
     }, [location, gaTrackingId]);
 
+    // GA main script load
+    const gtagScript =
+        process.env.NODE_ENV === 'development' || !gaTrackingId ? null : (
+            <GA trackingId={gaTrackingId} />
+        );
+
+    //  TODO: state, toggle, storage, dynamic add/remove
+    const theme: Theme = 'sunset';
+
     return (
         <LazyMotion features={domAnimation} strict>
             <AppUIState>
-                <Document theme={theme} gtagScript={gtagLoad}>
+                <Document theme={theme} gtagScript={gtagScript}>
                     <SkipLink />
                     <header id="header" className="header">
                         <Navigation />
