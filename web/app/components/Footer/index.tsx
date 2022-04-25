@@ -20,6 +20,8 @@ export const Footer: React.FC = () => {
     const name = `${me.firstName} ${me.lastName}`;
     const designFileUrl = `https://www.figma.com/file/d7dPcBdKZghY6jwQQWmHLo/Project?node-id=0%3A1`;
     const projectTaskBoardUrl = `https://chiangs.notion.site/Project-Tasks-Board-a46f64bb554d4f6b8f3ee840dae6c144`;
+    const webVitalsUrl = `https://metronome.sh/shared/cl1fai62k0957esia8525vv85
+`;
     const ctaButtonProps: ButtonCTAProps = {
         name: `contact me`,
         type: `button`,
@@ -58,10 +60,21 @@ export const Footer: React.FC = () => {
                         href={projectTaskBoardUrl}
                         target="_blank"
                         rel="noreferrer noopener"
-                        title="LinkedIn via new tab"
-                        aria-label="click to open new tab to my LinkedIn profile"
+                        title="Notion project development tasks board"
+                        aria-label="click to open new tab to my Notion file to see the status of development"
                     >
                         Development status
+                    </a>
+                </li>
+                <li className="footer--link">
+                    <a
+                        href={webVitalsUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        title="Web core vitals dashboard via Metronome"
+                        aria-label="click to open new tab to view the performance of this site"
+                    >
+                        Web core vitals
                     </a>
                 </li>
             </ul>
