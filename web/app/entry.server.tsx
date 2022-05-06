@@ -1,6 +1,7 @@
 import { renderToString } from 'react-dom/server';
 import { RemixServer } from 'remix';
 import type { EntryContext } from 'remix';
+import dotenv from 'dotenv';
 
 export default function handleRequest(
     request: Request,
@@ -8,6 +9,8 @@ export default function handleRequest(
     responseHeaders: Headers,
     remixContext: EntryContext,
 ) {
+    dotenv.config();
+
     let markup = renderToString(<RemixServer context={remixContext} url={request.url} />);
 
     responseHeaders.set('Content-Type', 'text/html');

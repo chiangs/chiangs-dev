@@ -1,6 +1,7 @@
 // Remix
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
+import { sanity } from '~utils';
 import { LandingData, LANDING_COPY } from '~copy/landing';
 import { TestimonialData, TESTIMONIAL_COPY } from '~copy/testimonials';
 // Styles
@@ -38,14 +39,18 @@ type LoaderData = {
     landingCopy: LandingData;
     testimonialsCopy: TestimonialData;
     linkedInUrl: string;
+    cms: any;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+    // Sanity
+    const cms = await sanity.getClient().fetch(`*[_type == "post"]{ name, title, fields }`);
     // loader logic
     const data: LoaderData = {
         landingCopy: LANDING_COPY,
         testimonialsCopy: TESTIMONIAL_COPY,
         linkedInUrl: ME.linkedIn,
+        cms,
     };
     // #region error testing
     /**
@@ -88,7 +93,8 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
 };
 
 const Index = () => {
-    const { landingCopy, testimonialsCopy, linkedInUrl } = useLoaderData<LoaderData>();
+    const { landingCopy, testimonialsCopy, linkedInUrl, cms } = useLoaderData<LoaderData>();
+    console.log('🚀 ~ file: index.tsx ~ line 97 ~ Index ~ sanity', cms);
     const ctaText = `Contact me`;
     const greeting = `Hello, `;
     const ctaButton = (
