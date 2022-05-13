@@ -4,6 +4,16 @@ export default {
     name: 'page',
     title: 'Page',
     type: 'document',
+    groups: [
+        {
+            name: 'seo',
+            title: 'SEO',
+        },
+        {
+            name: 'media',
+            title: 'Media',
+        },
+    ],
     fields: [
         {
             name: 'title',
@@ -19,9 +29,13 @@ export default {
                 maxLength: 96,
             },
         },
-        blockContent,
+        {
+            name: 'sections',
+            title: 'Sections',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'section' }] }],
+        },
     ],
-
     preview: {
         select: {
             title: 'title',

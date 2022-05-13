@@ -10,9 +10,8 @@ import testimonialsStylesUrl from '~styles/components/testimonials.css';
 import { Avatar, ButtonCTA, TechStackIcons, Testimonial } from '~/components';
 import { PortableText, PortableTextComponents } from '@portabletext/react';
 
-const COMPONENTS_BIO: PortableTextComponents = {
+const COMPONENTS: PortableTextComponents = {
     marks: {
-        // Ex. 1: custom renderer for the em / italics decorator
         highlight: ({ children }) => <span className="highlight">{children}</span>,
     },
 };
@@ -126,6 +125,7 @@ const Index = () => {
 
     const h1 = (
         <h1>
+            <PortableText value={page.sections[0].sectionContent} components={COMPONENTS} />
             {greeting}
             <br />
             {titleContent}
@@ -171,7 +171,7 @@ const Index = () => {
                     </div>
                     <br />
                     <div className="description">
-                        <PortableText value={me.bio} components={COMPONENTS_BIO} />
+                        <PortableText value={me.bio} components={COMPONENTS} />
                     </div>
                     <section className="page--cta">{ctaButton}</section>
                 </div>
