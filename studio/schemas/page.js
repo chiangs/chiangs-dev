@@ -1,3 +1,5 @@
+import blockContent from './blockContent';
+
 export default {
     name: 'page',
     title: 'Page',
@@ -17,30 +19,7 @@ export default {
                 maxLength: 96,
             },
         },
-        {
-            name: 'mainImage',
-            title: 'Main image',
-            type: 'image',
-            options: {
-                hotspot: true,
-            },
-        },
-        {
-            name: 'categories',
-            title: 'Categories',
-            type: 'array',
-            of: [{ type: 'reference', to: { type: 'category' } }],
-        },
-        {
-            name: 'publishedAt',
-            title: 'Published at',
-            type: 'datetime',
-        },
-        {
-            name: 'body',
-            title: 'Body',
-            type: 'blockContent',
-        },
+        blockContent,
     ],
 
     preview: {

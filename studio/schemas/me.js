@@ -4,6 +4,11 @@ export default {
     type: 'document',
     fields: [
         {
+            name: 'title',
+            title: 'Title',
+            type: 'string',
+        },
+        {
             name: 'firstName',
             title: 'First Name',
             type: 'string',
@@ -48,15 +53,22 @@ export default {
         {
             name: 'bio',
             title: 'Bio',
-            type: 'array',
-            of: [
-                {
-                    title: 'Block',
-                    type: 'block',
-                    styles: [{ title: 'Normal', value: 'normal' }],
-                    lists: [],
-                },
-            ],
+            type: 'blockContent',
+        },
+        {
+            name: 'whatILove',
+            title: 'What I love',
+            type: 'blockContent',
+        },
+        {
+            name: 'whatIDo',
+            title: 'What I do',
+            type: 'blockContent',
+        },
+        {
+            name: 'whatIBelieve',
+            title: 'What I believe',
+            type: 'blockContent',
         },
     ],
     preview: {

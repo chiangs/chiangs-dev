@@ -2,14 +2,20 @@
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
 import { sanity } from '~utils';
-import { LandingData, LANDING_COPY } from '~copy/landing';
-import { TestimonialData, TESTIMONIAL_COPY } from '~copy/testimonials';
+import { COPY_INDEX, COPY_ME } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
 import { Avatar, ButtonCTA, TechStackIcons, Testimonial } from '~/components';
-import { ME } from '~copy/profile';
+import { PortableText, PortableTextComponents } from '@portabletext/react';
+
+const COMPONENTS_BIO: PortableTextComponents = {
+    marks: {
+        // Ex. 1: custom renderer for the em / italics decorator
+        highlight: ({ children }) => <span className="highlight">{children}</span>,
+    },
+};
 
 // TODO: Catch boundaries
 // TODO: Update meta
@@ -36,21 +42,28 @@ export const meta: MetaFunction = () => {
 
 // Loader
 type LoaderData = {
-    landingCopy: LandingData;
-    testimonialsCopy: TestimonialData;
-    linkedInUrl: string;
-    cms: any;
+    content: {
+        me: any;
+        page: any;
+    };
+    // landingCopy: LandingData;
+    // testimonialsCopy: TestimonialData;
+    // linkedInUrl: string;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
+    const QUERIES: string = `{
+        "me": ${COPY_ME},
+        "page": ${COPY_INDEX},
+    }`;
     // Sanity
-    const cms = await sanity.getClient().fetch(`*[_type == "post"]{ name, title, fields }`);
+    const content = await sanity.getClient().fetch(QUERIES);
     // loader logic
     const data: LoaderData = {
-        landingCopy: LANDING_COPY,
-        testimonialsCopy: TESTIMONIAL_COPY,
-        linkedInUrl: ME.linkedIn,
-        cms,
+        content,
+        // landingCopy: LANDING_COPY,
+        // testimonialsCopy: TESTIMONIAL_COPY,
+        // linkedInUrl: ME.linkedIn,
     };
     // #region error testing
     /**
@@ -93,8 +106,9 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
 };
 
 const Index = () => {
-    const { landingCopy, testimonialsCopy, linkedInUrl, cms } = useLoaderData<LoaderData>();
-    console.log('🚀 ~ file: index.tsx ~ line 97 ~ Index ~ sanity', cms);
+    const { content } = useLoaderData<LoaderData>();
+    console.log('🚀 ~ file: index.tsx ~ line 102 ~ Index ~ content', content);
+    const { me, page } = content;
     const ctaText = `Contact me`;
     const greeting = `Hello, `;
     const ctaButton = (
@@ -102,11 +116,14 @@ const Index = () => {
             {ctaText}
         </ButtonCTA>
     );
-    const titleContent = landingCopy.title.map((c, i) => (
-        <span key={`title${i}`} className={c.isHighlighted ? 'highlight' : ''}>
-            {c.text}
-        </span>
-    ));
+    const titleContent = (
+        <>
+            <span>I'm</span>
+            <span className="highlight title--end">&nbsp;{me.firstName}</span>
+            <span>.</span>
+        </>
+    );
+
     const h1 = (
         <h1>
             {greeting}
@@ -114,37 +131,34 @@ const Index = () => {
             {titleContent}
         </h1>
     );
+
     const subtitleList = (
         <ul className="list--subtitle">
-            {landingCopy.subtitle.map((s) => (
-                <li key={s}>{s}</li>
+            {me.keyTitles.map((t: string) => (
+                <li key={t}>{t}</li>
             ))}
         </ul>
     );
-    const descriptionContent = landingCopy.description.map((c, i) => (
-        <span key={`description${i}`} className={c.isHighlighted ? 'highlight' : ''}>
-            {c.text}
-        </span>
-    ));
-    const tesimonialTitleContent = testimonialsCopy.title.map((c, i) => (
-        <span key={`testimonial${i}`} className={c.isHighlighted ? 'highlight' : ''}>
-            {c.text}
-        </span>
-    ));
-    const testimonials = testimonialsCopy.testimonials.map((t, i) => (
-        <li key={`t${i}`} className="testimonial--list--item">
-            <a
-                className="link--image"
-                href={linkedInUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                title="LinkedIn via new tab"
-                aria-label="click to open new tab to my LinkedIn profile"
-            >
-                <Testimonial {...t} />
-            </a>
-        </li>
-    ));
+
+    // const tesimonialTitleContent = testimonialsCopy.title.map((c, i) => (
+    //     <span key={`testimonial${i}`} className={c.isHighlighted ? 'highlight' : ''}>
+    //         {c.text}
+    //     </span>
+    // ));
+    // const testimonials = testimonialsCopy.testimonials.map((t, i) => (
+    //     <li key={`t${i}`} className="testimonial--list--item">
+    //         <a
+    //             className="link--image"
+    //             href={linkedInUrl}
+    //             target="_blank"
+    //             rel="noreferrer noopener"
+    //             title="LinkedIn via new tab"
+    //             aria-label="click to open new tab to my LinkedIn profile"
+    //         >
+    //             <Testimonial {...t} />
+    //         </a>
+    //     </li>
+    // ));
 
     return (
         <article className="page">
@@ -155,29 +169,31 @@ const Index = () => {
                         {subtitleList}
                         <Avatar />
                     </div>
-                    <p className="description">{descriptionContent}</p>
                     <br />
+                    <div className="description">
+                        <PortableText value={me.bio} components={COMPONENTS_BIO} />
+                    </div>
                     <section className="page--cta">{ctaButton}</section>
                 </div>
             </section>
             <section className="container nopadding">
                 <div className="content who">
-                    <p>{landingCopy.who}</p>
+                    <PortableText value={me.whatILove} />
                 </div>
             </section>
             <section className="container nopadding">
                 <div className="content what">
-                    <p>{landingCopy.what}</p>
+                    <PortableText value={me.whatIDo} />
                 </div>
             </section>
             <section className="container">
                 <div className="content">
                     <TechStackIcons />
-                    <h2>{tesimonialTitleContent}</h2>
-                    <p className="differentiation">{testimonialsCopy.value}</p>
+                    <PortableText value={me.whatIBelieve} />
+                    {/* <p className="differentiation">{testimonialsCopy.value}</p>
                     <p>{testimonialsCopy.intro}</p>
                     <p className="small">{testimonialsCopy.preamble}</p>
-                    <ul className="testimonials--list list--nostyle">{testimonials}</ul>
+                    <ul className="testimonials--list list--nostyle">{testimonials}</ul> */}
                 </div>
             </section>
         </article>
