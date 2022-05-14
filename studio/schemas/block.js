@@ -7,11 +7,14 @@ export default {
     // you want and decide how you want to deal with it where you want to
     // use your content.
     styles: [
-        { title: 'Normal', value: 'normal' },
         { title: 'H1', value: 'h1' },
         { title: 'H2', value: 'h2' },
         { title: 'H3', value: 'h3' },
         { title: 'H4', value: 'h4' },
+        { title: 'Partial', value: 'span' },
+        { title: 'Normal', value: 'p' },
+        { title: 'Small', value: 'small' },
+        { title: 'Code', value: 'mono' },
         { title: 'Quote', value: 'blockquote' },
     ],
     lists: [{ title: 'Bullet', value: 'bullet' }],

@@ -2,15 +2,18 @@
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
 import { sanity } from '~utils';
+import { ContentComponents } from '~types';
 import { COPY_INDEX, COPY_ME } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
-import { Avatar, ButtonCTA, TechStackIcons, Testimonial } from '~/components';
-import { PortableText, PortableTextComponents } from '@portabletext/react';
+import { Avatar, ButtonCTA, TechStackIcons, Testimonial, Content } from '~/components';
 
-const COMPONENTS: PortableTextComponents = {
+const COMPONENTS: ContentComponents = {
+    block: {
+        normal: ({ children }) => <span>{children}</span>,
+    },
     marks: {
         highlight: ({ children }) => <span className="highlight">{children}</span>,
     },
@@ -109,27 +112,25 @@ const Index = () => {
     console.log('🚀 ~ file: index.tsx ~ line 102 ~ Index ~ content', content);
     const { me, page } = content;
     const ctaText = `Contact me`;
-    const greeting = `Hello, `;
     const ctaButton = (
         <ButtonCTA buttonclass="cta" clickHandler={() => null}>
             {ctaText}
         </ButtonCTA>
     );
-    const titleContent = (
-        <>
-            <span>I'm</span>
-            <span className="highlight title--end">&nbsp;{me.firstName}</span>
-            <span>.</span>
-        </>
-    );
 
     const h1 = (
         <h1>
-            <PortableText value={page.sections[0].sectionContent} components={COMPONENTS} />
-            {greeting}
+            <Content value={page.sections[0].sectionContent[0]} components={COMPONENTS} />
             <br />
-            {titleContent}
+            <Content value={page.sections[0].sectionContent[1]} components={COMPONENTS} />
+            <span className="highlight title--end">&nbsp;{me.firstName}</span>
         </h1>
+    );
+
+    const sectionTeamH2 = (
+        <h2>
+            <Content value={page.sections[1].sectionContent} components={COMPONENTS} />
+        </h2>
     );
 
     const subtitleList = (
@@ -171,26 +172,31 @@ const Index = () => {
                     </div>
                     <br />
                     <div className="description">
-                        <PortableText value={me.bio} components={COMPONENTS} />
+                        <Content value={me.bio} components={COMPONENTS} />
                     </div>
                     <section className="page--cta">{ctaButton}</section>
                 </div>
             </section>
             <section className="container nopadding">
                 <div className="content who">
-                    <PortableText value={me.whatILove} />
+                    <Content value={me.whatILove} />
                 </div>
             </section>
             <section className="container nopadding">
                 <div className="content what">
-                    <PortableText value={me.whatIDo} />
+                    <Content value={me.whatIDo} />
                 </div>
             </section>
             <section className="container">
                 <div className="content">
                     <TechStackIcons />
-                    <PortableText value={me.whatIBelieve} />
+                    {sectionTeamH2}
+                    <Content value={me.whatIBelieve} />
+                    <small>
+                        <Content value={page.sections[3].sectionContent} components={COMPONENTS} />
+                    </small>
                     {/* <p className="differentiation">{testimonialsCopy.value}</p>
+                  
                     <p>{testimonialsCopy.intro}</p>
                     <p className="small">{testimonialsCopy.preamble}</p>
                     <ul className="testimonials--list list--nostyle">{testimonials}</ul> */}

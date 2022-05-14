@@ -1,3 +1,4 @@
+export * from './Content';
 export * from './ErrorUI';
 export * from './SkipLink';
 export * from './ButtonCTA';

@@ -9,11 +9,6 @@ export default {
             type: 'string',
         },
         {
-            name: 'sectionId',
-            title: 'Id',
-            type: 'string',
-        },
-        {
             name: 'sectionContent',
             title: 'Section Content',
             type: 'array',

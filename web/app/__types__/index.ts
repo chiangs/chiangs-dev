@@ -1,3 +1,4 @@
+export * from './content-components.type';
 export * from './device-size.type';
 export * from './theme.type';
 export * from './text-style.type';
