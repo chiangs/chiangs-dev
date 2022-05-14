@@ -1,38 +1,38 @@
-import { TestimonialContent } from '~copy/testimonials';
+import { TestimonialContent } from '~types';
+import { Content } from '../Content';
 
-// TODO: Update component Id - component name, use id only for single instances
-export const Testimonial: React.FC<TestimonialContent> = ({
-    author,
-    position,
-    date,
-    review,
-    avatarUrlL,
-    avatarUrlS,
-    avatarUrlLfallback,
-    avatarUrlSfallback,
-}: TestimonialContent) => {
+export const Testimonial: React.FC<TestimonialContent> = (children) => {
     const COMPONENT_NAME = `testimonial`;
+    const { author, position } = children;
 
     return (
         <div className={`container--component ${COMPONENT_NAME}`} data-testid={COMPONENT_NAME}>
             <section className="avatar">
                 <div className="avatar--image--container">
                     <picture>
-                        <source media="min-width: 780px)" type="image/webp" srcSet={avatarUrlL} />
-                        <source media="max-width: 779px)" type="image/webp" srcSet={avatarUrlS} />
+                        <source
+                            media="min-width: 780px)"
+                            type="image/webp"
+                            srcSet={children.imageL}
+                        />
+                        <source
+                            media="max-width: 779px)"
+                            type="image/webp"
+                            srcSet={children.image}
+                        />
                         <source
                             media="min-width: 780px)"
                             type="image/png"
-                            srcSet={avatarUrlLfallback}
+                            srcSet={children.imageLFallback}
                         />
                         <source
                             media="max-width: 779px)"
                             type="image/png"
-                            srcSet={avatarUrlSfallback}
+                            srcSet={children.imageFallback}
                         />
                         <img
                             className="avatar--image"
-                            src={avatarUrlS}
+                            src={children.image}
                             alt={author}
                             height="80"
                             width="80"
@@ -45,7 +45,7 @@ export const Testimonial: React.FC<TestimonialContent> = ({
                 <p className="title--position">{position}</p>
             </section>
             <section className="review">
-                <p>{review}</p>
+                <Content value={children.testimonial} />
             </section>
         </div>
     );

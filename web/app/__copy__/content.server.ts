@@ -13,3 +13,11 @@ export const COPY_INDEX: string = `*[_type == "page" && title == "Index"][0]{
             sectionContent
         }
     }`;
+
+export const COPY_TESTIMONIAL = `*[_type == "testimonial"]{ 
+    author,
+    position,
+    testimonial,
+    "image": image.asset->url,
+  
+}`;

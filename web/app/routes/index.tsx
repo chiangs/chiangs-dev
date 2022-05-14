@@ -2,13 +2,14 @@
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
 import { sanity } from '~utils';
-import { ContentComponents } from '~types';
-import { COPY_INDEX, COPY_ME } from '~copy/content.server';
+import { ContentComponents, TestimonialContent } from '~types';
+import { COPY_INDEX, COPY_ME, COPY_TESTIMONIAL } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
 import { Avatar, ButtonCTA, TechStackIcons, Testimonial, Content } from '~/components';
+// <Testimonial {...t} />;
 
 const COMPONENTS: ContentComponents = {
     block: {
@@ -47,6 +48,7 @@ type LoaderData = {
     content: {
         me: any;
         page: any;
+        testimonials: TestimonialContent;
     };
     // landingCopy: LandingData;
     // testimonialsCopy: TestimonialData;
@@ -57,6 +59,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     const QUERIES: string = `{
         "me": ${COPY_ME},
         "page": ${COPY_INDEX},
+        "testimonials": ${COPY_TESTIMONIAL}
     }`;
     // Sanity
     const content = await sanity.getClient().fetch(QUERIES);
@@ -141,25 +144,11 @@ const Index = () => {
         </ul>
     );
 
-    // const tesimonialTitleContent = testimonialsCopy.title.map((c, i) => (
-    //     <span key={`testimonial${i}`} className={c.isHighlighted ? 'highlight' : ''}>
-    //         {c.text}
-    //     </span>
-    // ));
-    // const testimonials = testimonialsCopy.testimonials.map((t, i) => (
-    //     <li key={`t${i}`} className="testimonial--list--item">
-    //         <a
-    //             className="link--image"
-    //             href={linkedInUrl}
-    //             target="_blank"
-    //             rel="noreferrer noopener"
-    //             title="LinkedIn via new tab"
-    //             aria-label="click to open new tab to my LinkedIn profile"
-    //         >
-    //             <Testimonial {...t} />
-    //         </a>
-    //     </li>
-    // ));
+    const testimonials = content.testimonials.map((t: any) => (
+        <li key={t.author}>
+            <Testimonial {...t} />
+        </li>
+    ));
 
     return (
         <article className="page">
@@ -195,11 +184,7 @@ const Index = () => {
                     <small>
                         <Content value={page.sections[3].sectionContent} components={COMPONENTS} />
                     </small>
-                    {/* <p className="differentiation">{testimonialsCopy.value}</p>
-                  
-                    <p>{testimonialsCopy.intro}</p>
-                    <p className="small">{testimonialsCopy.preamble}</p>
-                    <ul className="testimonials--list list--nostyle">{testimonials}</ul> */}
+                    <ul className="testimonials--list list--nostyle">{testimonials}</ul>
                 </div>
             </section>
         </article>
