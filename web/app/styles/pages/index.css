@@ -43,6 +43,11 @@ h1 .highlight {
     background-color: var(--color-bg-red);
 }
 
+.who,
+.what {
+    padding: var(--space-content-m);
+}
+
 .who p,
 .what p {
     margin: 0;

@@ -24,20 +24,95 @@ export default {
             type: 'string',
         },
         {
-            name: 'profile',
+            name: 'image',
             title: 'Image',
             type: 'image',
+            description: 'Photo',
             options: {
                 hotspot: true,
             },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
         },
         {
-            name: 'avatar',
-            title: 'Image',
+            name: 'avatarDev',
+            title: 'Avatar Dev',
             type: 'image',
             options: {
                 hotspot: true,
             },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
+        },
+        {
+            name: 'avatarBusiness',
+            title: 'Avatar Business',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
+        },
+        {
+            name: 'avatarStudent',
+            title: 'Avatar Student',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
+        },
+        {
+            name: 'avatarContact',
+            title: 'Avatar Contact',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
+        },
+        {
+            name: 'avatarParty',
+            title: 'Avatar Party',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                {
+                    title: 'Alternative Text',
+                    name: 'alt',
+                    type: 'string',
+                },
+            ],
         },
         {
             name: 'keyTitles',
@@ -53,22 +128,26 @@ export default {
         {
             name: 'bio',
             title: 'Bio',
-            type: 'blockContent',
+            type: 'array',
+            of: [{ type: 'singleContent' }],
         },
         {
             name: 'whatILove',
             title: 'What I love',
-            type: 'blockContent',
+            type: 'array',
+            of: [{ type: 'singleContent' }],
         },
         {
             name: 'whatIDo',
             title: 'What I do',
-            type: 'blockContent',
+            type: 'array',
+            of: [{ type: 'singleContent' }],
         },
         {
             name: 'whatIBelieve',
             title: 'What I believe',
-            type: 'blockContent',
+            type: 'array',
+            of: [{ type: 'singleContent' }],
         },
     ],
     preview: {

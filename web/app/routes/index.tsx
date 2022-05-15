@@ -2,18 +2,18 @@
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
 import { sanity } from '~utils';
-import { ContentComponents, TestimonialContent } from '~types';
+import { ContentComponents, TestimonialContent, WebAccessibleImage } from '~types';
 import { COPY_INDEX, COPY_ME, COPY_TESTIMONIAL } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
-import { Avatar, ButtonCTA, TechStackIcons, Testimonial, Content } from '~/components';
-// <Testimonial {...t} />;
+import { ButtonCTA, TechStackIcons, Content, Testimonial, Avatar } from '~/components';
 
 const COMPONENTS: ContentComponents = {
     block: {
         normal: ({ children }) => <span>{children}</span>,
+        small: ({ children }) => <p className="small">{children}</p>,
     },
     marks: {
         highlight: ({ children }) => <span className="highlight">{children}</span>,
@@ -46,13 +46,23 @@ export const meta: MetaFunction = () => {
 // Loader
 type LoaderData = {
     content: {
-        me: any;
+        me: {
+            firstName: string;
+            keyTitles: any;
+            bio: any;
+            whatILove: any;
+            whatIDo: any;
+            whatIBelieve: any;
+            profile: string;
+            avatarDev: WebAccessibleImage;
+            avatarBusiness: WebAccessibleImage;
+            avatarContact: WebAccessibleImage;
+            avatarStudent: WebAccessibleImage;
+            avatarParty: WebAccessibleImage;
+        };
         page: any;
-        testimonials: TestimonialContent;
+        testimonials: TestimonialContent[];
     };
-    // landingCopy: LandingData;
-    // testimonialsCopy: TestimonialData;
-    // linkedInUrl: string;
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
@@ -66,9 +76,6 @@ export const loader: LoaderFunction = async ({ request }) => {
     // loader logic
     const data: LoaderData = {
         content,
-        // landingCopy: LANDING_COPY,
-        // testimonialsCopy: TESTIMONIAL_COPY,
-        // linkedInUrl: ME.linkedIn,
     };
     // #region error testing
     /**
@@ -113,7 +120,11 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
 const Index = () => {
     const { content } = useLoaderData<LoaderData>();
     console.log('🚀 ~ file: index.tsx ~ line 102 ~ Index ~ content', content);
-    const { me, page } = content;
+    const { me, page, testimonials } = content;
+    const { sections } = page;
+    const h1Section = sections.find((s: any) => s.sectionName === 'Greeting');
+    const h2Section = sections.find((s: any) => s.sectionName === 'Build a Team');
+    const testimonialSection = sections.find((s: any) => s.sectionName === 'Testimonials');
     const ctaText = `Contact me`;
     const ctaButton = (
         <ButtonCTA buttonclass="cta" clickHandler={() => null}>
@@ -123,16 +134,16 @@ const Index = () => {
 
     const h1 = (
         <h1>
-            <Content value={page.sections[0].sectionContent[0]} components={COMPONENTS} />
+            <Content value={h1Section.sectionContent[0]} components={COMPONENTS} />
             <br />
-            <Content value={page.sections[0].sectionContent[1]} components={COMPONENTS} />
+            <Content value={h1Section.sectionContent[1]} components={COMPONENTS} />
             <span className="highlight title--end">&nbsp;{me.firstName}</span>
         </h1>
     );
 
     const sectionTeamH2 = (
         <h2>
-            <Content value={page.sections[1].sectionContent} components={COMPONENTS} />
+            <Content value={h2Section.sectionContent} components={COMPONENTS} />
         </h2>
     );
 
@@ -144,8 +155,8 @@ const Index = () => {
         </ul>
     );
 
-    const testimonials = content.testimonials.map((t: any) => (
-        <li key={t.author}>
+    const testimonialItems = testimonials.map((t: any) => (
+        <li key={t.author} className="testimonial--list--item">
             <Testimonial {...t} />
         </li>
     ));
@@ -157,7 +168,7 @@ const Index = () => {
                     {h1}
                     <div className="subheader">
                         {subtitleList}
-                        <Avatar />
+                        <Avatar image={me.avatarDev} />
                     </div>
                     <br />
                     <div className="description">
@@ -181,10 +192,8 @@ const Index = () => {
                     <TechStackIcons />
                     {sectionTeamH2}
                     <Content value={me.whatIBelieve} />
-                    <small>
-                        <Content value={page.sections[3].sectionContent} components={COMPONENTS} />
-                    </small>
-                    <ul className="testimonials--list list--nostyle">{testimonials}</ul>
+                    <Content value={testimonialSection.sectionContent} components={COMPONENTS} />
+                    <ul className="testimonials--list list--nostyle">{testimonialItems}</ul>
                 </div>
             </section>
         </article>
