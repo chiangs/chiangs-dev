@@ -1,5 +1,7 @@
 // Remix
 import { Link } from 'remix';
+// App
+import { WebAccessibleImage } from '~types';
 // Copy
 import { ME } from '~copy/profile';
 // Assets
@@ -8,7 +10,10 @@ import linkedInUrl from '~public/icons/logo-linkedin.svg';
 import { Avatar } from '../Avatar';
 import { ButtonCTA, ButtonCTAProps } from '../ButtonCTA';
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
+    name,
+    avatar,
+}) => {
     const workLinkText = `Learn more about me and my work`;
     const privacyText = `Privacy and analytics tracking`;
     const sitemapText = `Sitemap`;
@@ -17,7 +22,6 @@ export const Footer: React.FC = () => {
     const now = new Date();
     const year = <span>&nbsp;{now.getFullYear()},&nbsp;</span>;
     const me = ME;
-    const name = `${me.firstName} ${me.lastName}`;
     const designFileUrl = `https://www.figma.com/file/d7dPcBdKZghY6jwQQWmHLo/Project?node-id=0%3A1`;
     const projectTaskBoardUrl = `https://chiangs.notion.site/Project-Tasks-Board-a46f64bb554d4f6b8f3ee840dae6c144`;
     const webVitalsUrl = `https://metronome.sh/shared/cl1fai62k0957esia8525vv85
@@ -39,7 +43,7 @@ export const Footer: React.FC = () => {
     return (
         <div className="container">
             <div className="footer--cta">
-                <Avatar variant="contact" dimensions={55} />
+                <Avatar image={avatar} dimensions={55} />
                 <ButtonCTA {...ctaButtonProps}>{ctaButtonProps.name}</ButtonCTA>
             </div>
             <ul className="list--footer--links list--nostyle">

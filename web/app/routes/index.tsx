@@ -3,12 +3,14 @@ import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } 
 // Content
 import { sanity } from '~utils';
 import { ContentComponents, TestimonialContent, WebAccessibleImage } from '~types';
-import { COPY_INDEX, COPY_ME, COPY_TESTIMONIAL } from '~copy/content.server';
+import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
 import { ButtonCTA, TechStackIcons, Content, Testimonial, Avatar } from '~/components';
+import { useContext } from 'react';
+import { ProfileContext } from '~/contexts';
 
 const COMPONENTS: ContentComponents = {
     block: {
@@ -46,20 +48,6 @@ export const meta: MetaFunction = () => {
 // Loader
 type LoaderData = {
     content: {
-        me: {
-            firstName: string;
-            keyTitles: any;
-            bio: any;
-            whatILove: any;
-            whatIDo: any;
-            whatIBelieve: any;
-            profile: string;
-            avatarDev: WebAccessibleImage;
-            avatarBusiness: WebAccessibleImage;
-            avatarContact: WebAccessibleImage;
-            avatarStudent: WebAccessibleImage;
-            avatarParty: WebAccessibleImage;
-        };
         page: any;
         testimonials: TestimonialContent[];
     };
@@ -67,7 +55,6 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
     const QUERIES: string = `{
-        "me": ${COPY_ME},
         "page": ${COPY_INDEX},
         "testimonials": ${COPY_TESTIMONIAL}
     }`;
@@ -119,13 +106,14 @@ export const ErrorBoundary = ({ error }: { error: Error }) => {
 
 const Index = () => {
     const { content } = useLoaderData<LoaderData>();
-    console.log('🚀 ~ file: index.tsx ~ line 102 ~ Index ~ content', content);
-    const { me, page, testimonials } = content;
+    const me = useContext(ProfileContext);
+    const { page, testimonials } = content;
     const { sections } = page;
+    const ctaText = `Contact me`;
     const h1Section = sections.find((s: any) => s.sectionName === 'Greeting');
     const h2Section = sections.find((s: any) => s.sectionName === 'Build a Team');
     const testimonialSection = sections.find((s: any) => s.sectionName === 'Testimonials');
-    const ctaText = `Contact me`;
+
     const ctaButton = (
         <ButtonCTA buttonclass="cta" clickHandler={() => null}>
             {ctaText}

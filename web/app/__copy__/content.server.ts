@@ -1,5 +1,7 @@
 export const COPY_ME: string = `*[_type == "me"]{ 
     firstName,
+    lastName,
+    fullName,
     keyTitles,
     bio,
     whatILove,

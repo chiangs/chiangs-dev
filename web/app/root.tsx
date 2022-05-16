@@ -26,17 +26,25 @@ import utilityClassesUrl from '~styles/utils/utils.css';
 import sunsetStylesUrl from '~styles/themes/sunset.css';
 import mobileMenuStylesUrl from '~styles/components/mobile-menu.css';
 import buttonStylesUrl from '~styles/components/buttons.css';
+// Content
+import { COPY_ME } from '~copy/content.server';
+import { sanity } from '~utils';
 // App
-import { AppUIState } from '~contexts';
-import { Theme } from '~types';
+import { AppUIState, ProfileState } from '~contexts';
+import { Profile, Theme } from '~types';
 import { useConsolePeekMsg } from '~hooks';
 import { ErrorUI, Navigation, MobileMenu, Footer, SkipLink } from '~components';
 
 // #region Server
-type LoaderData = { gaTrackingId: string | undefined };
+type LoaderData = { me: Profile; gaTrackingId: string | undefined };
 
 export const loader: LoaderFunction = async () => {
-    return json<LoaderData>({ gaTrackingId: process.env.GA_TRACKING_ID });
+    const QUERIES: string = `{
+        "me": ${COPY_ME},
+    }`;
+    // Sanity
+    const content = await sanity.getClient().fetch(QUERIES);
+    return json<LoaderData>({ me: content.me, gaTrackingId: process.env.GA_TRACKING_ID });
 };
 // #endregion Server
 
@@ -132,7 +140,7 @@ const Document = ({
 );
 
 const App = () => {
-    const { gaTrackingId } = useLoaderData<LoaderData>();
+    const { me, gaTrackingId } = useLoaderData<LoaderData>();
     const location = useLocation();
     useConsolePeekMsg(process.env.NODE_ENV);
 
@@ -154,22 +162,24 @@ const App = () => {
 
     return (
         <LazyMotion features={domAnimation} strict>
-            <AppUIState>
-                <Document theme={theme} gtagScript={gtagScript}>
-                    <SkipLink />
-                    <header id="header" className="header">
-                        <Navigation />
-                    </header>
-                    <main className="main" id="main">
-                        <Outlet />
-                    </main>
-                    <footer id="footer" className="footer">
-                        <Footer />
-                    </footer>
-                    {/* TODO: separate the back filter and dropdown menu for better transition z then y using framer motion? */}
-                    <MobileMenu />
-                </Document>
-            </AppUIState>
+            <ProfileState updatedValues={me}>
+                <AppUIState>
+                    <Document theme={theme} gtagScript={gtagScript}>
+                        <SkipLink />
+                        <header id="header" className="header">
+                            <Navigation />
+                        </header>
+                        <main className="main" id="main">
+                            <Outlet />
+                        </main>
+                        <footer id="footer" className="footer">
+                            <Footer name={me.fullName} avatar={me.avatarContact} />
+                        </footer>
+                        {/* TODO: separate the back filter and dropdown menu for better transition z then y using framer motion? */}
+                        <MobileMenu />
+                    </Document>
+                </AppUIState>
+            </ProfileState>
         </LazyMotion>
     );
 };
