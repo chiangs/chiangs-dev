@@ -1,11 +1,11 @@
 // React
 import { useEffect } from 'react';
-// Remix
+import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import { json, LoaderFunction } from "@remix-run/node";
+
 import {
-    json,
     Links,
     LiveReload,
-    LoaderFunction,
     Meta,
     Outlet,
     Scripts,
@@ -13,8 +13,8 @@ import {
     useCatch,
     useLoaderData,
     useLocation,
-} from 'remix';
-import type { MetaFunction, LinksFunction } from 'remix';
+} from "@remix-run/react";
+
 // Google
 import { gtag } from '~utils';
 // FramerMotion

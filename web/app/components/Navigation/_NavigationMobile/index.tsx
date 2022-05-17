@@ -1,7 +1,6 @@
 // React
 import { createRef } from 'react';
-// Remix
-import { Link } from 'remix';
+import { Link } from "@remix-run/react";
 // FramerMotion
 import { m } from 'framer-motion';
 // Assets

@@ -1,5 +1,6 @@
 // Remix
-import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
+import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
+import { useCatch, useLoaderData } from "@remix-run/react";
 // Styles
 import stylesUrl from '~styles/pages/contact.css';
 

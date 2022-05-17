@@ -1,5 +1,5 @@
 // Remix
-import { LinksFunction, MetaFunction } from 'remix';
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 
 export const links: LinksFunction = () => {
     return [

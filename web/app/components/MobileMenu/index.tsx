@@ -1,5 +1,5 @@
 // Remix
-import { NavLink } from 'remix';
+import { NavLink } from "@remix-run/react";
 // App
 import { MAIN_ROUTES } from '~constants';
 import { useAppContext } from '~/contexts';

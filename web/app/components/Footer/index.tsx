@@ -1,5 +1,5 @@
 // Remix
-import { Link } from 'remix';
+import { Link } from "@remix-run/react";
 // App
 import { WebAccessibleImage } from '~types';
 // Copy

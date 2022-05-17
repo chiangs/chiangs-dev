@@ -1,7 +1,6 @@
 // React
 import React from 'react';
-// Remix
-import { LinksFunction, MetaFunction } from 'remix';
+import { LinksFunction, MetaFunction } from "@remix-run/node";
 // Styles
 import stylesUrl from '~styles/pages/privacy.css';
 
