@@ -2,7 +2,7 @@
 import { LoaderFunction, useLoaderData, useCatch, LinksFunction, MetaFunction } from 'remix';
 // Content
 import { sanity } from '~utils';
-import { ContentComponents, TestimonialContent, WebAccessibleImage } from '~types';
+import { ContentComponents, TestimonialContent } from '~types';
 import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
