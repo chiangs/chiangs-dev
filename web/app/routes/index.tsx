@@ -1,6 +1,6 @@
 // Remix
-import { LinksFunction, LoaderFunction, MetaFunction } from "@remix-run/node";
-import { useCatch, useLoaderData } from "@remix-run/react";
+import { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
+import { useCatch, useLoaderData } from '@remix-run/react';
 // Content
 import { sanity } from '~utils';
 import { ContentComponents, TestimonialContent } from '~types';
@@ -152,7 +152,7 @@ const Index = () => {
 
     return (
         <article className="page">
-            <section className="container">
+            <section className="container intro">
                 <div className="content">
                     {h1}
                     <div className="subheader">
@@ -166,17 +166,17 @@ const Index = () => {
                     <section className="page--cta">{ctaButton}</section>
                 </div>
             </section>
-            <section className="container nopadding">
+            <section className="container whowhat nopadding">
                 <div className="content who">
+                    <div>image place holder</div>
                     <Content value={me.whatILove} />
                 </div>
-            </section>
-            <section className="container nopadding">
                 <div className="content what">
                     <Content value={me.whatIDo} />
+                    <div>image place holder</div>
                 </div>
             </section>
-            <section className="container">
+            <section className="container team">
                 <div className="content">
                     <TechStackIcons />
                     {sectionTeamH2}

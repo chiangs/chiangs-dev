@@ -28,7 +28,13 @@
 /* #endregion lists */
 
 /* #region Desktop Overrides */
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 820px) {
+    .page {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: repeat(10, 1fr);
+        grid-gap: var(--space-container-s);
+    }
     .content {
         padding: var(--space-container-xxxl) calc(var(--space-container-xxxl) * 1.25);
     }

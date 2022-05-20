@@ -60,7 +60,7 @@
 }
 
 /* #region Desktop Overrides */
-@media screen and (min-width: 780px) {
+@media screen and (min-width: 820px) {
     .container--component.testimonial {
         padding: var(--space-content-xl);
     }

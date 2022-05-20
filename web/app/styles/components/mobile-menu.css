@@ -82,7 +82,7 @@
 }
 /* #endregion mobile menu */
 
-@media screen and (min-width: 870px) {
+@media screen and (min-width: 820px) {
     /* Navbar */
     .navigation--mobile {
         display: none;
