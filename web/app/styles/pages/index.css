@@ -110,3 +110,48 @@ h2 .highlight {
     }
 }
 /* #endregion Desktop overrides */
+
+/* #region construction */
+.container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 18px;
+    margin: 84px 84px 0 84px;
+}
+
+h1 {
+    grid-column: 2/7;
+    grid-row: 1;
+}
+
+.highlighted {
+    color: var(--purple-urple);
+}
+
+.content {
+    grid-column: 2/7;
+    grid-row: 2;
+    padding: 0;
+}
+
+.subtitle {
+    color: var(--tower);
+    font-size: 1.625rem;
+    margin-bottom: var(--space-content-xs);
+}
+
+p {
+    margin: 0 0 26px 0;
+}
+
+.message {
+    max-width: 50%;
+    word-wrap: break-word;
+}
+
+.list--footer--links {
+    margin-top: 52px;
+    line-height: 2.2rem;
+}
+/* #endregion construction */

@@ -9,7 +9,14 @@ import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
-import { ButtonCTA, TechStackIcons, Content, Testimonial, Avatar } from '~/components';
+import {
+    ButtonCTA,
+    TechStackIcons,
+    Content,
+    Testimonial,
+    Avatar,
+    Construction,
+} from '~/components';
 import { useContext } from 'react';
 import { ProfileContext } from '~/contexts';
 
@@ -150,7 +157,8 @@ const Index = () => {
         </li>
     ));
 
-    return (
+    const construction = <Construction />;
+    const landing = (
         <article className="page">
             <section className="container intro">
                 <div className="content">
@@ -187,6 +195,8 @@ const Index = () => {
             </section>
         </article>
     );
+
+    return construction;
 };
 
 export default Index;

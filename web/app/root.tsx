@@ -1,7 +1,7 @@
 // React
 import { useEffect } from 'react';
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
-import { json, LoaderFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import { json, LoaderFunction } from '@remix-run/node';
 
 import {
     Links,
@@ -13,7 +13,7 @@ import {
     useCatch,
     useLoaderData,
     useLocation,
-} from "@remix-run/react";
+} from '@remix-run/react';
 
 // Google
 import { gtag } from '~utils';
@@ -166,15 +166,15 @@ const App = () => {
                 <AppUIState>
                     <Document theme={theme} gtagScript={gtagScript}>
                         <SkipLink />
-                        <header id="header" className="header">
+                        {/* <header id="header" className="header">
                             <Navigation />
-                        </header>
+                        </header> */}
                         <main className="main" id="main">
                             <Outlet />
                         </main>
-                        <footer id="footer" className="footer">
+                        {/* <footer id="footer" className="footer">
                             <Footer name={me.fullName} avatar={me.avatarContact} />
-                        </footer>
+                        </footer> */}
                         {/* TODO: separate the back filter and dropdown menu for better transition z then y using framer motion? */}
                         <MobileMenu />
                     </Document>

@@ -249,7 +249,7 @@ p:last-of-type {
 
 p,
 a {
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 p.small,
@@ -268,7 +268,7 @@ a {
     font-size: 1rem;
     letter-spacing: 0.04em;
     text-transform: lowercase;
-    text-decoration: underline;
+    text-decoration: none;
     transition: var(--transition-link);
 }
 

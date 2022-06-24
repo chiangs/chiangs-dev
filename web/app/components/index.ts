@@ -9,3 +9,4 @@ export * from './Footer';
 export * from './Avatar';
 export * from './TechStackIcons';
 export * from './Testimonial';
+export * from './Construction';
