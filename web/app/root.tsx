@@ -2,6 +2,8 @@
 import { useEffect } from 'react';
 import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import { json, LoaderFunction } from '@remix-run/node';
+// Metronome
+import { MetronomeLinks } from '@metronome-sh/react';
 
 import {
     Links,
@@ -128,6 +130,7 @@ const Document = ({
             <link rel="icon" href="/favicon.ico" sizes="any" />
             <link rel="icon" type="image/svg+xml" href="/icon.svg" />
             <Links />
+            <MetronomeLinks />
             {gtagScript}
         </head>
         <body id="body" className={`body ${theme} mobile`}>
