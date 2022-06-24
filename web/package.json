@@ -7,7 +7,6 @@
     "scripts": {
         "build": "remix build",
         "dev": "cross-env NODE_ENV=development netlify dev",
-        "postinstall": "metronome setup",
         "start": "cross-env NODE_ENV=production netlify dev",
         "format": "prettier --write app",
         "lint": "eslint app"
