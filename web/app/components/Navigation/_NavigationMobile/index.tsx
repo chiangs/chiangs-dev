@@ -1,13 +1,13 @@
 // React
 import { createRef } from 'react';
-import { Link } from "@remix-run/react";
+import { Link } from '@remix-run/react';
 // FramerMotion
 import { m } from 'framer-motion';
 // Assets
 import logoSunriseUrl from '~public/images/logo-sunrise.svg';
 import logoSunsetUrl from '~public/images/logo-sunset.svg';
 // Types
-import { MobileMenuState } from '~/__types__';
+import type { MobileMenuState } from '~types';
 // Contexts
 import { useAppContext } from '~/contexts';
 // Hooks

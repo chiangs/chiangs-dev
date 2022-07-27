@@ -1,7 +1,8 @@
 // Testing library
 import { render, screen } from '@testing-library/react';
 // Component
-import { ButtonMain, ButtonMainProps } from './index';
+import type { ButtonMainProps } from './index';
+import { ButtonMain } from './index';
 
 describe('ButtonPrimary', () => {
     it('has the class primary', () => {

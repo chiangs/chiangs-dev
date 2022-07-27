@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 // App
 import { DEFAULT_VIEWPORT, THRESHOLD_DESKTOP } from '~constants';
-import { DeviceSize } from '~types';
+import type { DeviceSize } from '~types';
 
 export const useViewport = (): { viewPortDeviceSize: DeviceSize | undefined } => {
     const sizeCheck = (width = DEFAULT_VIEWPORT): DeviceSize =>

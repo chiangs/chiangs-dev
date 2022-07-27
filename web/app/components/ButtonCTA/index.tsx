@@ -1,5 +1,6 @@
 // Components
-import { Button, ButtonProps } from '../_Button';
+import type { ButtonProps } from '../_Button';
+import { Button } from '../_Button';
 
 export interface ButtonCTAProps extends ButtonProps {
     disabled?: false;

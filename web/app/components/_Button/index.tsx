@@ -1,5 +1,5 @@
 // React
-import { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 /**
  * Should be extended by a common component.

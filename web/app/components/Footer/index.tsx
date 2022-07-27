@@ -1,14 +1,15 @@
 // Remix
 import { Link } from "@remix-run/react";
 // App
-import { WebAccessibleImage } from '~types';
+import type { WebAccessibleImage } from '~types';
 // Copy
 import { ME } from '~copy/profile';
 // Assets
 import linkedInUrl from '~public/icons/logo-linkedin.svg';
 // Components
 import { Avatar } from '../Avatar';
-import { ButtonCTA, ButtonCTAProps } from '../ButtonCTA';
+import type { ButtonCTAProps } from '../ButtonCTA';
+import { ButtonCTA } from '../ButtonCTA';
 
 export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
     name,

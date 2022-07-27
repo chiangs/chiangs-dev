@@ -1,8 +1,8 @@
-import { Profile } from '~types';
+import type { Profile } from '~types';
 export const ME: Profile = {
     firstName: `Stephen`,
     lastName: `Chiang`,
-    middleInitial: `E.`,
+    fullName: `Stephen E. Chiang`,
     city: `Stavanger`,
     country: `Norway`,
     title: `UX engineer`,

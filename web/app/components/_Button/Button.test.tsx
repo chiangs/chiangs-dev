@@ -1,7 +1,8 @@
 // Testing library
 import { render, screen } from '@testing-library/react';
 // Component
-import { Button, ButtonProps } from './index';
+import type { ButtonProps } from './index';
+import { Button } from './index';
 
 describe('Button', () => {
     it('renders a button with role and type and children passed', () => {

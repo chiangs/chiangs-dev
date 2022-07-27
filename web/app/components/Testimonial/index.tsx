@@ -1,4 +1,4 @@
-import { TestimonialContent } from '~types';
+import type { TestimonialContent } from '~types';
 import { Content } from '../Content';
 
 export const Testimonial: React.FC<TestimonialContent> = ({

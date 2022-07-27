@@ -1,4 +1,5 @@
-import { PortableText, PortableTextComponents } from '@portabletext/react';
+import type { PortableTextComponents } from '@portabletext/react';
+import { PortableText } from '@portabletext/react';
 
 /**
  * This is a component wrapper for the PortableText used to populate Block content from Sanity

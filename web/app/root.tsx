@@ -1,10 +1,5 @@
-// React
+// Client
 import { useEffect } from 'react';
-import type { LinksFunction, MetaFunction } from '@remix-run/node';
-import { json, LoaderFunction } from '@remix-run/node';
-// Metronome
-import { MetronomeLinks } from '@metronome-sh/react';
-
 import {
     Links,
     LiveReload,
@@ -16,7 +11,11 @@ import {
     useLoaderData,
     useLocation,
 } from '@remix-run/react';
-
+// Server
+import type { LinksFunction, MetaFunction, LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+// Metronome
+import { MetronomeLinks } from '@metronome-sh/react';
 // Google
 import { gtag } from '~utils';
 // FramerMotion
@@ -33,7 +32,7 @@ import { COPY_ME } from '~copy/content.server';
 import { sanity } from '~utils';
 // App
 import { AppUIState, ProfileState } from '~contexts';
-import { Profile, Theme } from '~types';
+import type { Profile, Theme } from '~types';
 import { useConsolePeekMsg } from '~hooks';
 import { ErrorUI, Navigation, MobileMenu, Footer, SkipLink } from '~components';
 

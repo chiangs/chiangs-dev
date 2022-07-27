@@ -1,6 +1,6 @@
 // Remix
-import { LinksFunction } from "@remix-run/node";
-import { ThrownResponse } from "@remix-run/react";
+import type { LinksFunction } from "@remix-run/node";
+import type { ThrownResponse } from "@remix-run/react";
 // Styles
 import stylesUrl from './styles.css';
 

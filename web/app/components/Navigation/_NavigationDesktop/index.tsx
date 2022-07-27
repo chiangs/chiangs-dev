@@ -1,7 +1,7 @@
 // Remix
 import { Link, NavLink, useLocation } from "@remix-run/react";
 // Types
-import { RouteLink } from '~types';
+import type { RouteLink } from '~types';
 // Assets
 import logoSunriseUrl from '~public/images/logo-sunrise.svg';
 import logoSunsetUrl from '~public/images/logo-sunset.svg';

@@ -1,4 +1,4 @@
-import { TextStyle } from '~/__types__';
+import type { TextStyle } from '~types';
 
 export type LandingData = {
     title: TextStyle[];

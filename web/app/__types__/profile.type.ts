@@ -1,5 +1,5 @@
-import { Technology } from './technology.type';
-import { WebAccessibleImage } from './testimonials.type';
+import type { Technology } from './technology.type';
+import type { WebAccessibleImage } from './testimonials.type';
 
 export type Profile = {
     firstName: string;

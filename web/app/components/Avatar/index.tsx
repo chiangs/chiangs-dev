@@ -1,4 +1,4 @@
-import { WebAccessibleImage } from '~types';
+import type { WebAccessibleImage } from '~types';
 
 type Props = {
     image: WebAccessibleImage;

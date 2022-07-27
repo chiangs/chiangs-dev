@@ -1,7 +1,7 @@
 // React
 import { createContext, useContext } from 'react';
 // App
-import { Profile, WebAccessibleImage } from '~types';
+import type { Profile, WebAccessibleImage } from '~types';
 
 // App state shape
 export type UIContext = Profile;

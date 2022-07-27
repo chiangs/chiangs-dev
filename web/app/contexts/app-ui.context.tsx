@@ -1,7 +1,8 @@
 // React
-import { createContext, Dispatch, SetStateAction, useContext, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
+import { createContext, useContext, useState } from 'react';
 // App
-import { MobileMenuState } from '~/__types__';
+import type { MobileMenuState } from '~types';
 
 // App state shape
 export type UIContext = {

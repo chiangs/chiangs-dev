@@ -1,9 +1,9 @@
 // Remix
-import { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { useCatch, useLoaderData } from '@remix-run/react';
 // Content
 import { sanity } from '~utils';
-import { ContentComponents, TestimonialContent } from '~types';
+import type { ContentComponents, TestimonialContent } from '~types';
 import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 // Styles
 import stylesUrl from '~styles/pages/index.css';
