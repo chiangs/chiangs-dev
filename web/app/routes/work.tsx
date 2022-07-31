@@ -1,6 +1,6 @@
 // Remix
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
-import { Outlet } from "@remix-run/react";
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
+import { Outlet } from '@remix-run/react';
 // Styles
 import stylesUrl from '~styles/pages/work.css';
 

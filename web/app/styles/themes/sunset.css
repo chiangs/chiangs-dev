@@ -64,6 +64,14 @@ body.sunset {
 body.sunset *:focus-visible {
     outline: var(--border-button) solid var(--color-focus);
 }
+
+body.sunset a {
+    color: var(--color-link);
+}
+
+body.sunset a:hover {
+    color: var(--color-focus);
+}
 /* #endregion Document */
 
 /* #region Buttons */

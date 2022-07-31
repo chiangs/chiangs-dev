@@ -1,4 +1,5 @@
-import { Button, ButtonProps } from '~/components';
+import type { ButtonProps } from '~/components';
+import { Button } from '~/components';
 
 type Props = {
     code: number;

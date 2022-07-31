@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 // Styles
 import stylesUrl from '~styles/pages/privacy.css';
 

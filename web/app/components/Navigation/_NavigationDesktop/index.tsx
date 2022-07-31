@@ -1,5 +1,5 @@
 // Remix
-import { Link, NavLink, useLocation } from "@remix-run/react";
+import { Link, NavLink, useLocation } from '@remix-run/react';
 // Types
 import type { RouteLink } from '~types';
 // Assets
