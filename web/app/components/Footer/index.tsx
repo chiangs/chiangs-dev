@@ -7,9 +7,9 @@ import { ME } from '~copy/profile';
 // Assets
 import linkedInUrl from '~public/icons/logo-linkedin.svg';
 // Components
-import { Avatar } from '../Avatar';
-import type { ButtonProps } from '../Button';
-import { Button } from '../Button';
+import { Avatar } from '../../atoms/Avatar';
+import type { ButtonProps } from '~atoms';
+import { Button } from '~atoms';
 
 export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
     name,

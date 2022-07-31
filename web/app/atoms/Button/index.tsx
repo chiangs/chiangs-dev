@@ -30,8 +30,11 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps | Partial<Butto
         ...defaultProps,
         ...props,
     };
-
     const classes = [COMPONENT_NAME, variant, [...(customClasses || [])]].join(' ');
+    const handleClick = () => {
+        if (isDisabled) return;
+        clickHandler();
+    };
 
     return (
         <button
@@ -39,7 +42,7 @@ export const Button: React.FC<ButtonProps> = (props: ButtonProps | Partial<Butto
             data-testid={COMPONENT_NAME}
             type={type}
             disabled={isDisabled}
-            onClick={clickHandler}
+            onClick={handleClick}
         >
             <div className={`${COMPONENT_NAME}--content`}>{props.children || label}</div>
         </button>

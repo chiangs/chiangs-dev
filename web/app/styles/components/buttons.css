@@ -34,7 +34,7 @@ button:focus-visible {
 }
 
 button:disabled {
-    background-color: var(--space-gray);
+    filter: grayscale(75%);
 }
 
 button:active {

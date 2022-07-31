@@ -4,7 +4,7 @@ import { NavLink } from '@remix-run/react';
 import { MAIN_ROUTES } from '~constants';
 import { useAppContext } from '~/contexts';
 // Components
-import { Button } from '~components';
+import { Button } from '~atoms';
 
 export const MobileMenu: React.FC = () => {
     const componentId = `mobile-menu`;

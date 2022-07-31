@@ -1,5 +1,5 @@
-import type { ButtonProps } from '~/components';
-import { Button } from '~/components';
+import type { ButtonProps } from '~atoms';
+import { Button } from '~atoms';
 
 type Props = {
     code: number;

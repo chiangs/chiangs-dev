@@ -1,3 +1,5 @@
+// React
+import { useContext } from 'react';
 // Remix
 import type { LinksFunction, LoaderFunction, MetaFunction } from '@remix-run/node';
 import { useCatch, useLoaderData } from '@remix-run/react';
@@ -9,8 +11,8 @@ import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
-import { Button, TechStackIcons, Content, Testimonial, Avatar, Construction } from '~/components';
-import { useContext } from 'react';
+import { Button } from '~atoms';
+import { TechStackIcons, Content, Testimonial, Avatar, Construction } from '~components';
 import { ProfileContext } from '~/contexts';
 
 const COMPONENTS: ContentComponents = {

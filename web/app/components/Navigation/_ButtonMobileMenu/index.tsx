@@ -1,4 +1,4 @@
-import { Button } from '~/components';
+import { Button } from '~atoms';
 import mobileMenuButtonUrl from '~public/icons/button-mobile-menu.svg';
 
 // TODO: Theme switch
