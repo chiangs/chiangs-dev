@@ -16,4 +16,7 @@ module.exports = {
     features: {
         storyStoreV7: true,
     },
+    reactOptions: {
+        fastRefresh: true,
+    },
 };

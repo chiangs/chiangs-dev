@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
 }: ButtonProps) => (
     <button
         className={['button', buttonclass, [...customClasses]].join(' ')}
-        data-testid="button"
+        data-testid="button--test"
         {...props}
         onClick={clickHandler}
     >
