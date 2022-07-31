@@ -1,14 +1,14 @@
 button {
     text-align: center;
     text-transform: lowercase;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.04em;
     line-height: 19px;
     font-family: var(--font-body);
     font-weight: var(--font-semibold);
     border-radius: var(--radius-button);
     border: var(--border-button) solid var(--gunmetal);
     box-shadow: var(--shadow-button);
-    padding: var(--space-component-m) var(--space-component-l);
+    padding: var(--space-component-2) var(--space-component-3);
 }
 
 button.button--contain,
@@ -31,6 +31,10 @@ button:focus {
 
 button:focus-visible {
     outline: var(--border-button) solid var(--color-focus);
+}
+
+button:disabled {
+    background-color: var(--space-gray);
 }
 
 button:active {

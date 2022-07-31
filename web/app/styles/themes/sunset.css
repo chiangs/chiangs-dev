@@ -3,35 +3,29 @@
 /* < 500 is WCAG AA passing only for large text and graphical  */
 /* FIXME: Remove body.sunset when themes css is added/removed by toggle */
 body.sunset {
+    /* #region Colors */
+    --base: var(--gunmetal);
+    --white-600: var(--white);
+    --white-500: var(--off-white);
     --gray-700: var(--ghost);
     --gray-600: var(--tower);
     --gray-500: var(--regent);
-    --gray-200: var(--urban);
-    --gray-100: var(--slate);
+    --gray-400: var(--slate);
     --green-700: var(--emerald);
     --green-600: var(--shamrock);
     --green-500: var(--genoa);
-    --red-500: var(--flamingo);
-    --red-200: var(--rosebud);
-    --red-100: var(--orchid);
+    --red-700: var(--flamingo);
+    --red-600: var(--rosebud);
+    --red-500: var(--orchid);
     --blue-500: var(--dodger);
     --purple-500: var(--purple-urple);
-    /* Usage */
-    --color-background: var(--gunmetal);
-    --color-text: var(--off-white);
-    --color-text-alt: var(--gunmetal);
-    --color-link: var(--blue-500);
-    --color-focus: var(--purple-500);
-    --color-blur: var(--gunmetal-35);
-    --color-cta: var(--midnight-haze);
-    --color-cta-active: var(--midnight-luck);
-    --color-title-highlight-green: var(--green-600);
-    --color-title-highlight-red: var(--red-500);
-    --color-list-fancy: var(--gray-600);
-    --color-bg-red: var(--red-500);
-    --color-bg-gray: var(--gray-500);
     /* Gradient */
     --gradient-action: linear-gradient(115.31deg, var(--purple-500) 30.88%, var(--blue-500) 74.07%);
+    --gradient-action-reversed: linear-gradient(
+        115.31deg,
+        var(--blue-500) 30.88%,
+        var(--purple-500) 74.07%
+    );
     --gradient-action-hover: linear-gradient(
         115.31deg,
         var(--purple-500) 30.88%,
@@ -42,8 +36,26 @@ body.sunset {
         var(--blue-500) 30.88%,
         var(--blue-500) 74.07%
     );
+    /* #endregion Colors */
+    /* Shadow */
+    --shadow-alert: 0px 1px 2px hsla(0, 0%, 0%, 0.65), 0px 4px 8px hsla(0, 0%, 0%, 0.75);
+    /* Usage */
+    --color-background: var(--base);
+    --color-text: var(--white-500);
+    --color-text-alt: var(--base);
+    --color-link: var(--blue-500);
+    --color-focus: var(--purple-500);
+    --color-blur: var(--gunmetal-35);
+    --color-cta: var(--midnight-haze);
+    --color-cta-active: var(--midnight-luck);
+    --color-title-highlight-green: var(--green-600);
+    --color-title-highlight-red: var(--red-500);
+    --color-list-fancy: var(--gray-600);
+    --color-bg-red: var(--red-500);
+    --color-bg-gray: var(--gray-500);
 }
 
+/* #region Document */
 body.sunset {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -52,32 +64,21 @@ body.sunset {
 body.sunset *:focus-visible {
     outline: var(--border-button) solid var(--color-focus);
 }
-
-/* #region Links */
-a:not(.link--image) {
-    color: var(--color-link);
-    box-shadow: inset 0 0 0 0 var(--color-link);
-}
-
-a:not(.link--image):hover {
-    box-shadow: inset var(--link-maxlength) 0 0 0 var(--color-link);
-    color: var(--off-white);
-}
-/* #endregion Links */
+/* #endregion Document */
 
 /* #region Buttons */
 body.sunset button.primary {
     --color-bg-default: var(--green-600);
     --color-bg-hover: var(--green-700);
     --color-bg-active: var(--green-500);
-    --color-label: var(--color-text);
+    --color-label: var(--white-600);
 }
 
 body.sunset button.alt {
-    --color-bg-default: var(--red-200);
-    --color-bg-hover: var(--red-100);
-    --color-bg-active: var(--red-500);
-    --color-label: var(--color-text);
+    --color-bg-default: var(--red-600);
+    --color-bg-hover: var(--red-500);
+    --color-bg-active: var(--red-700);
+    --color-label: var(--white-600);
 }
 
 body.sunset button.cta {
@@ -86,26 +87,6 @@ body.sunset button.cta {
     --color-border-hover: var(--gradient-action-hover);
     --color-border-active: var(--gradient-action-active);
     --color-bg-hover: var(--color-cta-active);
-    --color-label: var(--white);
+    --color-label: var(--white-600);
 }
 /* #endregion Buttons */
-
-/* #region Testimonial */
-body.sunset .container--component.testimonial {
-    --color-bg: var(--color-text);
-    --color-name: var(--color-background);
-    --color-title-position: var(--gray-200);
-    --color-copy: var(--gray-200);
-}
-/* #endregion Testimonial */
-
-/* #region TechIcons */
-body.sunset .list--tech--icons {
-    background-color: var(--color-text);
-    border-radius: var(--radius-card);
-}
-
-.nav--desktop .list--links a.active {
-    border-bottom: 1px solid var(--color-link);
-}
-/* #endregion TechIcons */
