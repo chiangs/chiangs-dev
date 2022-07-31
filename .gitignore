@@ -10,6 +10,7 @@
 /public/build
 public/build
 netlify/functions/server/build
+storybook-static
 .env
 
 # Testing

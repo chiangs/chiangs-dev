@@ -44,7 +44,6 @@ const updateTheme = (className) => {
         if (!hasTheme) {
             return classList.add(DEFAULT_THEME);
         }
-        console.log(className === LIGHT);
         if (className === LIGHT) {
             classList.add(LIGHT);
             classList.remove(DARK);

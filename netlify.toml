@@ -1,7 +1,6 @@
 [build]
   base = "web/"
   command = "yarn build"
-  publish = "public"
 
 [dev]
   command = "remix watch"
