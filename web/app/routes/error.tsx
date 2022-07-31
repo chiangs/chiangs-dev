@@ -1,4 +1,4 @@
-import { ButtonCTA } from '~/components';
+import { Button, ButtonProps } from '~/components';
 
 type Props = {
     code: number;
@@ -17,10 +17,10 @@ const ErrorPage: React.FC<Props> = ({ code = 404 }: Props) => {
         code === 404 &&
         `If you were just testing me, please use the menu to continue browsing around.`;
     const lastResort = `If all else fails, please do tell me by clicking the button below thanks! 🙏`;
-    const ctaProps = {
-        buttonClass: `cta`,
+    const ctaProps: ButtonProps = {
+        variant: `cta`,
         clickHandler: () => null,
-        ctaText: `cta`,
+        label: `cta`,
     };
 
     return (
@@ -36,7 +36,7 @@ const ErrorPage: React.FC<Props> = ({ code = 404 }: Props) => {
                 <p>{alternative}</p>
                 <p>{lastResort}</p>
             </section>
-            <ButtonCTA {...ctaProps}>{ctaProps.ctaText}</ButtonCTA>
+            <Button {...ctaProps} />
         </article>
     );
 };

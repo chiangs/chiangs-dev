@@ -23,6 +23,7 @@ import { LazyMotion, domAnimation } from 'framer-motion';
 // Styles
 import normalizeStylesUrl from '~styles/__normalize.css';
 import globalStylesUrl from '~styles/global.css';
+import documentStylesUrl from '~styles/document.css';
 import utilityClassesUrl from '~styles/utils/utils.css';
 import sunsetStylesUrl from '~styles/themes/sunset.css';
 import mobileMenuStylesUrl from '~styles/components/mobile-menu.css';
@@ -67,6 +68,10 @@ export const links: LinksFunction = () => [
     {
         rel: 'stylesheet',
         href: globalStylesUrl,
+    },
+    {
+        rel: 'stylesheet',
+        href: documentStylesUrl,
     },
     {
         rel: 'stylesheet',

@@ -1,5 +1,6 @@
 const designFileUrl = `https://www.figma.com/file/d7dPcBdKZghY6jwQQWmHLo/Project?node-id=0%3A1`;
 const projectTaskBoardUrl = `https://chiangs.notion.site/`;
+const storybookUrl = `https://storybook.chiangs.dev`;
 
 export const Construction: React.FC = () => (
     <section className="container">
@@ -27,6 +28,17 @@ export const Construction: React.FC = () => (
                         aria-label="click to open new tab to the Figma design file"
                     >
                         Figma file
+                    </a>
+                </li>
+                <li className="footer--link">
+                    <a
+                        href={storybookUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        title="Storybook"
+                        aria-label="click to open new tab to my deployed Storybook"
+                    >
+                        Storybook
                     </a>
                 </li>
                 <li className="footer--link">

@@ -9,14 +9,7 @@ import { COPY_INDEX, COPY_TESTIMONIAL } from '~copy/content.server';
 import stylesUrl from '~styles/pages/index.css';
 import testimonialsStylesUrl from '~styles/components/testimonials.css';
 // Components
-import {
-    ButtonCTA,
-    TechStackIcons,
-    Content,
-    Testimonial,
-    Avatar,
-    Construction,
-} from '~/components';
+import { Button, TechStackIcons, Content, Testimonial, Avatar, Construction } from '~/components';
 import { useContext } from 'react';
 import { ProfileContext } from '~/contexts';
 
@@ -123,9 +116,9 @@ const Index = () => {
     const testimonialSection = sections.find((s: any) => s.sectionName === 'Testimonials');
 
     const ctaButton = (
-        <ButtonCTA buttonclass="cta" clickHandler={() => null}>
+        <Button variant="cta" clickHandler={() => null}>
             {ctaText}
-        </ButtonCTA>
+        </Button>
     );
 
     const h1 = (

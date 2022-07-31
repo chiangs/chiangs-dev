@@ -1,10 +1,10 @@
 // Remix
-import { NavLink } from "@remix-run/react";
+import { NavLink } from '@remix-run/react';
 // App
 import { MAIN_ROUTES } from '~constants';
 import { useAppContext } from '~/contexts';
 // Components
-import { ButtonMain } from '~components';
+import { Button } from '~components';
 
 export const MobileMenu: React.FC = () => {
     const componentId = `mobile-menu`;
@@ -24,9 +24,9 @@ export const MobileMenu: React.FC = () => {
                     {links}
                     <li className="linkitem--button">Toggle</li>
                     <li className="linkitem--button">
-                        <ButtonMain buttonclass="alt" clickHandler={handleCloseMenu}>
+                        <Button variant="alt" clickHandler={handleCloseMenu}>
                             close
-                        </ButtonMain>
+                        </Button>
                     </li>
                 </ul>
             </nav>

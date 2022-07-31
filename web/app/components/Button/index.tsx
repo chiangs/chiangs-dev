@@ -6,11 +6,11 @@ import type { ButtonHTMLAttributes } from 'react';
  * Not to be exposed to routes as a standalone component.
  */
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'alt' | 'cta';
-    label: string;
-    type: 'submit' | 'reset' | 'button' | undefined;
-    isDisabled: boolean;
     clickHandler: () => any;
+    variant?: 'primary' | 'alt' | 'cta';
+    type?: 'submit' | 'reset' | 'button' | undefined;
+    label?: string;
+    isDisabled?: boolean;
     customClasses?: string[];
     value?: string | ReadonlyArray<string> | number | undefined;
 }

@@ -1,4 +1,4 @@
-import { ButtonMain } from '~/components';
+import { Button } from '~/components';
 import mobileMenuButtonUrl from '~public/icons/button-mobile-menu.svg';
 
 // TODO: Theme switch
@@ -16,14 +16,14 @@ const ButtonMobileMenu: React.FC<Props> = ({ menuToggleHandler }: Props) => {
         clickHandler: menuToggleHandler,
     };
     return (
-        <ButtonMain id={componentId} {...buttonProps} data-testid={componentId}>
+        <Button id={componentId} {...buttonProps} data-testid={componentId}>
             <img
                 src={mobileMenuButtonUrl}
                 alt={buttonImgAlt}
                 height={buttonImgDims}
                 width={buttonImgDims}
             />
-        </ButtonMain>
+        </Button>
     );
 };
 

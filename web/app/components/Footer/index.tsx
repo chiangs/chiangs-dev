@@ -1,5 +1,5 @@
 // Remix
-import { Link } from "@remix-run/react";
+import { Link } from '@remix-run/react';
 // App
 import type { WebAccessibleImage } from '~types';
 // Copy
@@ -8,8 +8,8 @@ import { ME } from '~copy/profile';
 import linkedInUrl from '~public/icons/logo-linkedin.svg';
 // Components
 import { Avatar } from '../Avatar';
-import type { ButtonCTAProps } from '../ButtonCTA';
-import { ButtonCTA } from '../ButtonCTA';
+import type { ButtonProps } from '../Button';
+import { Button } from '../Button';
 
 export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
     name,
@@ -27,7 +27,8 @@ export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
     const projectTaskBoardUrl = `https://chiangs.notion.site/Project-Tasks-Board-a46f64bb554d4f6b8f3ee840dae6c144`;
     const webVitalsUrl = `https://metronome.sh/shared/cl1fai62k0957esia8525vv85
 `;
-    const ctaButtonProps: ButtonCTAProps = {
+    const ctaButtonProps: ButtonProps = {
+        variant: `primary`,
         name: `contact me`,
         type: `button`,
         clickHandler: () => null,
@@ -45,7 +46,7 @@ export const Footer: React.FC<{ name: string; avatar: WebAccessibleImage }> = ({
         <div className="container">
             <div className="footer--cta">
                 <Avatar image={avatar} dimensions={55} />
-                <ButtonCTA {...ctaButtonProps}>{ctaButtonProps.name}</ButtonCTA>
+                <Button {...ctaButtonProps}>{ctaButtonProps.name}</Button>
             </div>
             <ul className="list--footer--links list--nostyle">
                 {footerLinks}
