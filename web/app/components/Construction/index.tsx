@@ -54,6 +54,6 @@ export const Construction: React.FC = () => (
                 </li>
             </ul>
         </section>
-<a href="https://fosstodon.org/@chiangs" rel="me">Mastodon</a>
+<a href="https://uiuxdev.social/@chiangs" rel="me">Mastodon</a>
     </section>
 );
